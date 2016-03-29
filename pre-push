@@ -1,0 +1,8 @@
+#!/usr/bin/python
+from git_slack import GitSlackHook
+hook = GitSlackHook(
+    url='https://hooks.slack.com/services/...',
+    branch='master',
+    verbose=True
+)
+hook.pre_push()

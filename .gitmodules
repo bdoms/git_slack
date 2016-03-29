@@ -1,0 +1,6 @@
+[submodule "lib/slack"]
+	path = lib/slack
+	url = https://github.com/bdoms/slack
+[submodule "lib/git"]
+	path = lib/git
+	url = https://github.com/bdoms/git
