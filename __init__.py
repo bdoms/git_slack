@@ -1,7 +1,7 @@
 import sys
 
-from lib.slack import Slack
-from lib import git
+from .lib.slack import Slack
+from .lib import git
 
 
 class GitSlackHook(object):
@@ -23,7 +23,7 @@ class GitSlackHook(object):
         current_branch = git.currentBranch()
         if self.branch and current_branch != self.branch:
             if self.verbose:
-                print 'Slack: pushing unspecified branch skips notification'
+                print('Slack: pushing unspecified branch skips notification')
             return
 
         # also skip if a remote is specified but we're not pushing to it
@@ -31,7 +31,7 @@ class GitSlackHook(object):
         push_remote = git.pushRemote()
         if self.remote and push_remote != self.remote:
             if self.verbose:
-                print 'Slack: pushing to unspecified remote skips notification'
+                print('Slack: pushing to unspecified remote skips notification')
             return
 
         username = git.currentUser()
@@ -54,7 +54,7 @@ class GitSlackHook(object):
                             attachment['color'] = trello_colors[color_name]
                             break
                         elif self.verbose:
-                            print 'Slack: no value found for color named "%s"' % color_name
+                            print('Slack: no value found for color named "%s"' % color_name)
 
                 attachments.append(attachment)
 
