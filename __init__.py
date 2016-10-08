@@ -59,6 +59,6 @@ class GitSlackHook(object):
                 attachments.append(attachment)
 
         if self.verbose:
-            print('Slack: ' + text + str(len(attachments)) + ' cards')
+            print('Slack: ' + text + ' ' + str(len(attachments)) + ' card(s)')
 
         self.client.postMessage(text, attachments=attachments)
