@@ -20,10 +20,10 @@ class GitSlackHook(object):
     def pre_push(self, trello_cards=None, trello_colors=None):
         # only talk to Slack if one of the specified branches is being pushed
         # e.g. take action on master but not on a feature branch
-        current_branch = git.currentBranch()
-        if self.branch and current_branch != self.branch:
+        push_branch = git.pushBranch()
+        if self.branch and push_branch != self.branch:
             if self.verbose:
-                print('Slack: pushing unspecified branch skips notification')
+                print('Slack: pushing unspecified branch "' + push_branch + '" skips notification')
             return
 
         # also skip if a remote is specified but we're not pushing to it
@@ -31,7 +31,7 @@ class GitSlackHook(object):
         push_remote = git.pushRemote()
         if self.remote and push_remote != self.remote:
             if self.verbose:
-                print('Slack: pushing to unspecified remote skips notification')
+                print('Slack: pushing to unspecified remote "' + push_remote + '" skips notification')
             return
 
         username = git.currentUser()
